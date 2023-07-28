@@ -29,20 +29,22 @@ vim.api.nvim_set_keymap("v", "y", '"+y', { noremap = true })
 
 -- python
 lvim.builtin.treesitter.ensure_installed = {
-  "python",
+    "python",
 }
-lvim.plugins = {
-  "ChristianChiarulli/swenv.nvim",
-  "stevearc/dressing.nvim",
-}
+-- lvim.plugins = {
+--     "ChristianChiarulli/swenv.nvim",
+--     "stevearc/dressing.nvim",
+--     "ludovicchabant/vim-gutentags"
+-- }
 lvim.builtin.which_key.mappings["C"] = {
-  name = "Python",
-  c = { "<cmd>lua require('swenv.api').pick_venv()<cr>", "Choose Env" },
+    name = "Python",
+    c = { "<cmd>lua require('swenv.api').pick_venv()<cr>", "Choose Env" },
 }
+vim.g.python3_host_prog = '/data/home/taolinzhang/miniconda3/bin/python3'
 
 local function open_nvim_tree()
-  -- open the tree
-  require("nvim-tree.api").tree.open()
+    -- open the tree
+    require("nvim-tree.api").tree.open()
 end
 vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 -- lvim.builtin.nvimtree.setup.open_on_setup = true
@@ -67,25 +69,25 @@ lvim.keys.normal_mode["<c-=>"] = ":Autopep8<CR>"
 -- vim.keymap.set('v', '<leader>C', require('osc52').copy_visual)
 -- osc52 copy function
 function copy()
-  if vim.v.event.operator == 'y' and vim.v.event.regname == 'c' then
-    require('osc52').copy_register('c')
-  end
+    if vim.v.event.operator == 'y' and vim.v.event.regname == 'c' then
+        require('osc52').copy_register('c')
+    end
 end
 
 vim.api.nvim_create_autocmd('TextYankPost', {callback = copy})
 
 -- nvim-osc52 clipboard provider
 local function copy(lines, _)
-  require('osc52').copy(table.concat(lines, '\n'))
+    require('osc52').copy(table.concat(lines, '\n'))
 end
 
 local function paste()
-  return {vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('')}
+    return {vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('')}
 end
 vim.g.clipboard = {
-  name = 'osc52',
-  copy = {['+'] = copy, ['*'] = copy},
-  paste = {['+'] = paste, ['*'] = paste},
+    name = 'osc52',
+    copy = {['+'] = copy, ['*'] = copy},
+    paste = {['+'] = paste, ['*'] = paste},
 }
 
 -- to disable icons and use a minimalist setup, uncomment the following
@@ -270,14 +272,11 @@ lvim.plugins = {
     },
     {"tell-k/vim-autopep8"},
     {'ojroques/nvim-osc52',
-        -- config = function()
-        --     require("osc52").setup() {
-        --         max_length = 0,      -- Maximum length of selection (0 for no limit)
-        --         silent     = false,  -- Disable message on successful copy
-        --         trim       = false,  -- Trim surrounding whitespaces before copy
-        --     }
-        -- end,
     },
+    {"ChristianChiarulli/swenv.nvim"},
+    {"stevearc/dressing.nvim"},
+    {"ludovicchabant/vim-gutentags"},
+    {"neoclide/coc-python"},
 }
 vim.g.autopep8_disable_show_diff=1
 
