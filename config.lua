@@ -25,7 +25,7 @@ lvim.format_on_save = false
 lvim.builtin.terminal.open_mapping = "<c-t>"
 lvim.builtin.terminal.direction = "float"
 lvim.builtin.nvimtree.setup.auto_reload_on_write=true
-vim.api.nvim_set_keymap("v", "y", '"+y', { noremap = true })
+-- vim.api.nvim_set_keymap("v", "y", '"+y', { noremap = true })
 
 -- python
 lvim.builtin.treesitter.ensure_installed = {
@@ -63,6 +63,14 @@ lvim.keys.insert_mode["˚"] = "<Esc>:m .-2<CR>==gi"
 lvim.keys.insert_mode["<c-=>"] = "<Esc>:Autopep8<CR>==gi"
 lvim.keys.visual_mode["<c-=>"] = ":Autopep8<CR>"
 lvim.keys.normal_mode["<c-=>"] = ":Autopep8<CR>"
+lvim.keys.visual_mode["d"] = '\"_d'
+lvim.keys.visual_mode["dd"] = '\"_dd'
+lvim.keys.normal_mode["d"] = '\"_d'
+lvim.keys.normal_mode["dd"] = '\"_dd'
+lvim.keys.visual_mode["x"] = '\"_x'
+lvim.keys.visual_mode["c"] = '\"_c'
+lvim.keys.normal_mode["x"] = '\"_x'
+lvim.keys.normal_mode["c"] = '\"_c'
 
 -- vim.keymap.set('n', '<leader>C', require('osc52').copy_operator, {expr = true})
 -- vim.keymap.set('n', '<leader>CC', '<leader>C_', {remap = true})
